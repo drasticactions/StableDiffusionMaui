@@ -16,7 +16,10 @@ xcuserdata/
 *.xccheckout
 
 build/
-runtimes/
+runtimes/macos/
+runtimes/maccatalyst-arm64/
+runtimes/maccatalyst-x64/
+runtimes/maccatalyst/
 DerivedData/
 *.moved-aside
 *.pbxuser

@@ -1,0 +1,10 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup Condition="$(TargetFramework.Contains('-maccatalyst')) == true ">
+            <None Visible="false" Include="$(MSBuildThisFileDirectory)maccatalyst\libstable-diffusion.dylib">
+                <Pack>true</Pack>
+                <PackageCopyToOutput>true</PackageCopyToOutput>
+                <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+                <TargetPath>libstable-diffusion.dylib</TargetPath>
+            </None>
+    </ItemGroup>
+</Project>
