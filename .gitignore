@@ -16,6 +16,7 @@ xcuserdata/
 *.xccheckout
 
 build/
+runtimes/
 DerivedData/
 *.moved-aside
 *.pbxuser
