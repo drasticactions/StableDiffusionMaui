@@ -1,0 +1,6 @@
+[submodule "external/StableDiffusion.NET"]
+	path = external/StableDiffusion.NET
+	url = git@github.com:drasticactions/StableDiffusion.NET.git
+[submodule "external/stable-diffusion.cpp"]
+	path = external/stable-diffusion.cpp
+	url = git@github.com:drasticactions/stable-diffusion.cpp.git
