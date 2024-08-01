@@ -6,10 +6,16 @@ namespace StableDiffusionMaui;
 
 public partial class App : Application
 {
-    public App()
+    private readonly IServiceProvider provider;
+
+    public App(IServiceProvider provider)
     {
         this.InitializeComponent();
+        this.provider = provider;
+    }
 
-        this.MainPage = new AppShell();
+    protected override Window CreateWindow(IActivationState? activationState)
+    {
+        return new Window(new MainPage());
     }
 }

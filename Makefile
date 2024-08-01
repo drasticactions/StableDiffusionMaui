@@ -37,6 +37,8 @@ maccatalyst_arm64:
 lipo_maccatalyst:
 	mkdir -p runtimes/maccatalyst
 	lipo -create runtimes/maccatalyst-x64/libstable-diffusion.dylib runtimes/maccatalyst-arm64/libstable-diffusion.dylib -output runtimes/maccatalyst/libstable-diffusion.dylib
+	cp $(ROOT)/build/maccatalyst-x64/bin/ggml-metal.metal runtimes/maccatalyst/ggml-metal.metal
+	cp $(ROOT)/build/maccatalyst-x64/bin/ggml-common.h runtimes/maccatalyst/ggml-common.h
 
 ios_simulator_x64:
 	rm -rf build/ios-simulator-x64
@@ -59,6 +61,8 @@ ios_simulator_arm64:
 lipo_ios_simulator:
 	mkdir -p runtimes/ios-simulator
 	lipo -create runtimes/ios-simulator-x64/libstable-diffusion.dylib runtimes/ios-simulator-arm64/libstable-diffusion.dylib -output runtimes/ios-simulator/libstable-diffusion.dylib
+	cp $(ROOT)/build/ios-simulator-x64/bin/ggml-metal.metal runtimes/ios-simulator/ggml-metal.metal
+	cp $(ROOT)/build/ios-simulator-x64/bin/ggml-common.h runtimes/ios-simulator/ggml-common.h
 
 ios:
 	rm -rf build/ios
