@@ -38,3 +38,33 @@ lipo_maccatalyst:
 	mkdir -p runtimes/maccatalyst
 	lipo -create runtimes/maccatalyst-x64/libstable-diffusion.dylib runtimes/maccatalyst-arm64/libstable-diffusion.dylib -output runtimes/maccatalyst/libstable-diffusion.dylib
 
+ios_simulator_x64:
+	rm -rf build/ios-simulator-x64
+	cmake $(PROJECT_ROOT) $(CMAKE_PARAMETERS) -DCMAKE_TOOLCHAIN_FILE=../../ios.toolchain.cmake -DPLATFORM=SIMULATOR64 -DSD_METAL=ON -DBUILD_SHARED_LIBS=ON -DSD_BUILD_SHARED_LIBS=ON -DSD_STANDALONE=OFF -DSD_BUILD_EXAMPLES=OFF -B $(ROOT)/build/ios-simulator-x64
+	cmake --build build/ios-simulator-x64
+	mkdir -p runtimes/ios-simulator-x64
+	cp $(ROOT)/build/ios-simulator-x64/bin/ggml-metal.metal runtimes/ios-simulator-x64/ggml-metal.metal
+	cp $(ROOT)/build/ios-simulator-x64/bin/ggml-common.h runtimes/ios-simulator-x64/ggml-common.h
+	cp $(ROOT)/build/ios-simulator-x64/bin/libstable-diffusion.dylib runtimes/ios-simulator-x64/libstable-diffusion.dylib
+
+ios_simulator_arm64:
+	rm -rf build/ios-simulator-arm64
+	cmake $(PROJECT_ROOT) $(CMAKE_PARAMETERS) -DCMAKE_TOOLCHAIN_FILE=../../ios.toolchain.cmake -DPLATFORM=SIMULATORARM64 -DSD_METAL=ON -DBUILD_SHARED_LIBS=ON -DSD_BUILD_SHARED_LIBS=ON -DSD_STANDALONE=OFF -DSD_BUILD_EXAMPLES=OFF -B $(ROOT)/build/ios-simulator-arm64
+	cmake --build build/ios-simulator-arm64
+	mkdir -p runtimes/ios-simulator-arm64
+	cp $(ROOT)/build/ios-simulator-arm64/bin/ggml-metal.metal runtimes/ios-simulator-arm64/ggml-metal.metal
+	cp $(ROOT)/build/ios-simulator-arm64/bin/ggml-common.h runtimes/ios-simulator-arm64/ggml-common.h
+	cp $(ROOT)/build/ios-simulator-arm64/bin/libstable-diffusion.dylib runtimes/ios-simulator-arm64/libstable-diffusion.dylib
+
+lipo_ios_simulator:
+	mkdir -p runtimes/ios-simulator
+	lipo -create runtimes/ios-simulator-x64/libstable-diffusion.dylib runtimes/ios-simulator-arm64/libstable-diffusion.dylib -output runtimes/ios-simulator/libstable-diffusion.dylib
+
+ios:
+	rm -rf build/ios
+	cmake $(PROJECT_ROOT) $(CMAKE_PARAMETERS) -DCMAKE_TOOLCHAIN_FILE=../../ios.toolchain.cmake -DPLATFORM=OS64 -DSD_METAL=ON -DBUILD_SHARED_LIBS=ON -DSD_BUILD_SHARED_LIBS=ON -DSD_STANDALONE=OFF -DSD_BUILD_EXAMPLES=OFF -B $(ROOT)/build/ios
+	cmake --build build/ios
+	mkdir -p runtimes/ios
+	cp $(ROOT)/build/ios/bin/ggml-metal.metal runtimes/ios/ggml-metal.metal
+	cp $(ROOT)/build/ios/bin/ggml-common.h runtimes/ios/ggml-common.h
+	cp $(ROOT)/build/ios/bin/libstable-diffusion.dylib runtimes/ios/libstable-diffusion.dylib

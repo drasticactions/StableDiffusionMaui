@@ -20,6 +20,10 @@ runtimes/macos/
 runtimes/maccatalyst-arm64/
 runtimes/maccatalyst-x64/
 runtimes/maccatalyst/
+runtimes/ios-simulator-arm64/
+runtimes/ios-simulator-x64/
+runtimes/ios-simulator/
+runtimes/ios/
 DerivedData/
 *.moved-aside
 *.pbxuser
