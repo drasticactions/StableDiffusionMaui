@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\runtimes\StableDiffusion.targets" />
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\external\StableDiffusion.NET\StableDiffusion.NET\StableDiffusion.NET.csproj" />
+	  <ProjectReference Include="..\external\DA.UI\src\DA.UI\DA.UI.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="$(MSBuildThisFileDirectory)../stylecop.json" Link="stylecop.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="ConsoleAppFramework" Version="5.2.3">
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	    <PrivateAssets>all</PrivateAssets>
+	  </PackageReference>
+    <PackageReference Include="HPPH.SkiaSharp" Version="1.0.0" />
+	</ItemGroup>
+</Project>

@@ -1,4 +1,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <DefineConstants Condition="$([MSBuild]::IsOSPlatform('Windows'))">WINDOWS</DefineConstants>
+        <DefineConstants Condition="$([MSBuild]::IsOSPlatform('Linux'))">LINUX</DefineConstants>
+        <DefineConstants Condition="$([MSBuild]::IsOSPlatform('OSX'))">MACOS</DefineConstants>
+        <IsWindows>$([MSBuild]::IsOSPlatform('Windows'))</IsWindows>
+        <IsLinux>$([MSBuild]::IsOSPlatform('Linux'))</IsLinux>
+        <IsOSX>$([MSBuild]::IsOSPlatform('OSX'))</IsOSX>
+    </PropertyGroup>
     <ItemGroup Condition="$(TargetFramework.Contains('-maccatalyst')) == true ">
             <None Visible="false" Include="$(MSBuildThisFileDirectory)maccatalyst\libstable-diffusion.dylib">
                 <Pack>true</Pack>
@@ -6,5 +14,25 @@
                 <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
                 <TargetPath>libstable-diffusion.dylib</TargetPath>
             </None>
+    </ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.Contains('-')) == false AND $(IsOSX)">
+        <None Visible="false" Include="$(MSBuildThisFileDirectory)macos\libstable-diffusion.dylib">
+            <Pack>true</Pack>
+            <PackageCopyToOutput>true</PackageCopyToOutput>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>libstable-diffusion.dylib</TargetPath>
+        </None>
+        <None Visible="false" Include="$(MSBuildThisFileDirectory)macos\ggml-common.h">
+            <Pack>true</Pack>
+            <PackageCopyToOutput>true</PackageCopyToOutput>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>ggml-common.h</TargetPath>
+        </None>
+        <None Visible="false" Include="$(MSBuildThisFileDirectory)macos\ggml-metal.metal">
+            <Pack>true</Pack>
+            <PackageCopyToOutput>true</PackageCopyToOutput>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>ggml-metal.metal</TargetPath>
+        </None>
     </ItemGroup>
 </Project>
